@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <div class="container"><h1>Welcome to MaxCash</h1></div>
+  <div class="container">
+  	<h1>Welcome to MaxCash</h1>
+  	<p><a href="{{ url_for('sign_up') }}">Sign Up</a></p>
+  </div>
 {% endblock %}

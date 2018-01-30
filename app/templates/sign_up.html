@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <div class="container">
+  	<form action="" method="post">
+  		{{ form.hidden_tag() }}
+  		<p>
+  			{{ form.email.label }}<br>
+  			{{ form.email(size=25) }}<br>
+  			{% for error in form.email.errors %}
+  			<span style="color: red;">[{{ error }}]</span>
+  			{% endfor %}
+  		</p>
+  		<p>
+  			{{ form.bank_name.label }}<br>
+  			{{ form.bank_name(size=25) }}<br>
+  			{% for error in form.bank_name.errors %}
+  			<span style="color: red;">[{{ error }}]</span>
+  			{% endfor %}
+  		</p>
+  		<p>
+  			{{ form.acc_no.label }}<br>
+  			{{ form.acc_no(size=25) }}<br>
+  			{% for error in form.acc_no.errors %}
+  			<span style="color: red;">[{{ error }}]</span>
+  			{% endfor %}
+  		</p>
+  		<p>
+  			{{ form.acc_name.label }}<br>
+  			{{ form.acc_name(size=25) }}<br>
+  			{% for error in form.acc_name.errors %}
+  			<span style="color: red;">[{{ error }}]</span>
+  			{% endfor %}
+  		</p>
+  		<p>
+  			{{ form.phone.label }}<br>
+  			{{ form.phone(size=25) }}<br>
+  			{% for error in form.phone.errors %}
+  			<span style="color: red;">[{{ error }}]</span>
+  			{% endfor %}
+  		</p>
+  		<p>
+  			{{ form.password.label }}<br>
+  			{{ form.password(size=25) }}<br>
+  			{% for error in form.password.errors %}
+  			<span style="color: red;">[{{ error }}]</span>
+  			{% endfor %}
+  		</p>
+  		<p>
+  			{{ form.password2.label }}<br>
+  			{{ form.password2(size=25) }}<br>
+  			{% for error in form.password2.errors %}
+  			<span style="color: red;">[{{ error }}]</span>
+  			{% endfor %}
+  		</p>
+  		<p>
+  			{{ form.terms.label }}
+  			{{ form.terms(size=25) }}<br>
+  			{% for error in form.terms.errors %}
+  			<span style="color: red;">[{{ error }}]</span>
+  			{% endfor %}
+  		</p>
+  		<p>{{ form.submit() }} <a href="{{ url_for('index') }}">Back</a></p>
+  	</form>
+  </div>
+{% endblock %}
