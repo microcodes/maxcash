@@ -60,3 +60,18 @@ h2 {
 }
 
 .sign-term { line-height: 20px; }
+
+.divider {
+	text-align: center;
+	margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+.divider hr {
+	margin: 7px 0;
+	width: 35%;
+}
+
+.left { float: left; }
+
+.right { float: right; }
