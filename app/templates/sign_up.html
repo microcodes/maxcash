@@ -1,20 +1,96 @@
 {% extends "base.html" %}
-{% from "_formhelpers.html" import render_field %}
+
+{% block head %}
+  {{ super() }}
+  <style>
+    * { box-sizing: border-box; }
+  </style>
+{% endblock %}
+
+{% block message %}{% endblock %}
 
 {% block content %}
-  <div class="container">
-  	<form action="" method="post">
-  		{{ form.hidden_tag() }}
-      <dl>
-        {{ render_field(form.email) }}
-        {{ render_field(form.phone) }}
-        {{ render_field(form.password) }}
-        {{ render_field(form.password2) }}
-        {{ render_field(form.bank_name) }}
-        {{ render_field(form.acc_no) }}
-        {{ render_field(form.acc_name) }}
-      </dl>
-  		<p>{{ form.sign_up() }} <a href="{{ url_for('index') }}">Back</a></p>
-  	</form>
+  <div class="container reg-form">
+    <div class="card">
+      <div class="card-body">
+      	<form action="" method="post">
+          <div class="form-group sign-title">
+            <h2>{{ title }}</h2>
+          </div>
+
+      		{{ form.hidden_tag() }}
+          
+          <div class="form-group">
+            {{ form.email.label }}
+            {{ form.email(class="form-control") }}
+            <small class="form-text text-muted">We'll never share your email with anyone else.</small>
+            {% for error in form.email.errors %}
+            <small class="form-text" style="color: red;">{{ error }}</small>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            {{ form.phone.label }}
+            {{ form.phone(class="form-control") }}
+            {% for error in form.phone.errors %}
+            <small class="form-text" style="color: red;">{{ error }}</small>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            {{ form.password.label }}
+            {{ form.password(class="form-control") }}
+            {% for error in form.password.errors %}
+            <small class="form-text" style="color: red;">{{ error }}</small>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            {{ form.password2.label }}
+            {{ form.password2(class="form-control") }}
+            {% for error in form.password2.errors %}
+            <small class="form-text" style="color: red;">{{ error }}</small>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            {{ form.bank_name.label }}<br />
+            {{ form.bank_name(class="custom-select") }}
+            {% for error in form.bank_name.errors %}
+            <small class="form-text" style="color: red;">{{ error }}</small>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            {{ form.acc_no.label }}
+            {{ form.acc_no(class="form-control") }}
+            {% for error in form.acc_no.errors %}
+            <small class="form-text" style="color: red;">{{ error }}</small>
+            {% endfor %}
+          </div>
+
+          <div class="form-group">
+            {{ form.acc_name.label }}
+            {{ form.acc_name(class="form-control") }}
+            {% for error in form.acc_name.errors %}
+            <small class="form-text" style="color: red;">{{ error }}</small>
+            {% endfor %}
+          </div>
+
+          <div class="form-group sign-term"><small>By creating an account, you agree to our <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a>.</small></div>
+
+      		<div class="form-group">
+            {{ form.sign_up(class="btn btn-info btn-block") }}
+          </div>
+
+          <hr>
+          <p>Already have an account? <a href="{{ url_for('sign_in') }}">Sign in</a></p>
+      	</form>
+      </div>  
+    </div>   
   </div>
+{% endblock %}
+
+{% block footer %}
+  {{ super() }}
 {% endblock %}

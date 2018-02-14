@@ -1,0 +1,62 @@
+/* Universal rules */
+
+body {font-family: 'Source Sans Pro';}
+
+/* Landing page rules */
+
+.masthead {
+    min-height: 30rem;
+    position: relative;
+    display: table;
+    width: 100%;
+    height: auto;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 100%), url("../img/bg-masthead.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.masthead h1 {
+   font-size: 4rem;
+   margin: 0;
+   padding: 0;
+}
+
+@media (min-width: 992px) {
+    .masthead {
+        height: 100vh;
+    }
+    .masthead h1 {
+        font-size: 5.5rem;
+    }
+}
+
+/* Sign-up and Sign-in page rules */
+
+form { margin: 0px 10px; }
+
+h2 {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+.reg-form { 
+	max-width: 390px; 
+	margin-top: 15px;
+}
+
+.form-group { margin-bottom: 10px; }
+
+.card { 
+	padding: 0 15px;
+	border: 1px solid #AAA; 
+}
+
+.sign-title {
+	margin-top: 15px;
+	margin-bottom: 15px;
+}
+
+.sign-term { line-height: 20px; }

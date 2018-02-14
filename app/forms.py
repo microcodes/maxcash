@@ -16,7 +16,7 @@ class SignUpForm(FlaskForm):
 		        ], validators=[DataRequired()])
 	acc_no = StringField('Account Number', validators=[DataRequired(), Length(min=0, max=10)])
 	acc_name = StringField('Account Name', validators=[DataRequired()])
-	sign_up = SubmitField('Sign Up')
+	sign_up = SubmitField('Sign up')
 
 
 class SignInForm(FlaskForm):

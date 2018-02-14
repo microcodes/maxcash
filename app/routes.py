@@ -22,7 +22,7 @@ def sign_up():
 		db.session.commit()
 		flash('Congratulations, you sign up successfull!')
 		return redirect(url_for('index'))
-	return render_template('sign_up.html', title='Sign Up', form=form)
+	return render_template('sign_up.html', title='Sign up', form=form)
 
 
 @app.route('/sign-in', methods=['GET', 'POST'])
