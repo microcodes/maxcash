@@ -75,17 +75,21 @@ class Keyword(db.Model):
 
 class User(UserMixin, db.Model):
 	__tablename__ = 'users'
-	id        = db.Column(db.Integer, primary_key=True)
-	email     = db.Column(db.String(255), nullable=False, index=True, unique=True)
-	phone     = db.Column(db.String(11), nullable=False, index=True, unique=True)
-	password  = db.Column(db.String(255), nullable=False)
-	terms     = db.Column(db.Boolean)
-	credit    = db.Column(db.String(25))
-	status    = db.Column(db.String(25))
-	sellerId  = db.Column(db.String(25), index=True, unique=True)
+	id         = db.Column(db.Integer, primary_key=True)
+	email      = db.Column(db.String(255), nullable=False, index=True, unique=True)
+	phone      = db.Column(db.String(25), nullable=False, index=True, unique=True)
+	password   = db.Column(db.String(255), nullable=False)
+	bank_name  = db.Column(db.String(255), nullable=False)
+	acc_no     = db.Column(db.String(255), nullable=False, index=True, unique=True)
+	acc_name   = db.Column(db.String(255), nullable=False, unique=True)
+	terms      = db.Column(db.Boolean, default=True)
+	waye       = db.Column(db.String(25), default='Z2')
+	credit     = db.Column(db.String(25), default='0.00')
+	status     = db.Column(db.String(25), default='NTR')
+	seller_id  = db.Column(db.String(25), index=True, unique=True)
 
 	def __repr__(self):
-		return '%s' % self.email
+		return '%s' % self.acc_name
 
 @login_manager.user_loader
 def load_user(id):
