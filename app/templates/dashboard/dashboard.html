@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+
+{% block article %}
+	<div class="row">
+	  <div class="col-sm-4">
+	    <div class="card">
+        <p><i class="fas fa-chart-line"></i> Stock</p>
+        <p class="value">₦{{ current_user.stock }}.00</p>
+      </div>
+	  </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <p><i class="fas fa-history"></i> Status</p>
+        <p class="value">{{ current_user.status }}</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card">
+        <p><i class="fab fa-ethereum"></i></i> Stock price</p>
+        <p class="value">₦1000.00</p>
+      </div>
+    </div>
+	</div>
+
+	<hr style="border: 1px dashed #808b96;">
+
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul style="list-style: none; padding: 0;">
+      {% for category, message in messages %}
+      <li class="alert alert-{{ category }}" role="alert">{{ message}}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </div>
+
+	<div class="row">
+    {% if current_user.status == 'ready' %}
+	  <div class="col-sm-12">
+	    <a href="{{ url_for('dash.buy', id=current_user.id) }}" class="btn btn-outline-info btn-lg btn-block">Buy ₦1000 Stock</a>
+	  </div>
+    {% elif current_user.status == 'queued' %}
+    <div class="col-sm-12">
+      <a href="{{ url_for('dash.cancel', id=current_user.id) }}" class="btn btn-outline-warning btn-lg btn-block">Cancel buy order</a>
+    </div>
+    {% elif current_user.buyers | length >= 4 %}
+	  <div class="col-sm-12">
+	    <a href="{{ url_for('dash.sell', id=current_user.id) }}" class="btn btn-outline-success btn-lg btn-block">Sell Stock</a>
+    </div>
+    {% endif %}
+	</div>
+	<div class="row">
+    {% if current_user.status == 'buyer' %}
+    <div class="col-sm-12">
+      <div style="background-color: skyblue; margin-top: 23px;">
+        <small>
+          {{ current_user.notice }}
+        </small> 
+      </div>
+    </div>
+    {% endif %} 
+  </div>
+  <div class="row">
+    
+    {% for x in current_user.buyers %}
+    <div class="col-sm-6">
+      <div>
+        <small>
+          <p>{{ x.email }} wants to buy your stock</p>
+          <p><a href="{{ url_for('dash.confirm', id=x.id, sid=x.seller_id) }}">Confirm payment and release stock</a></p>
+        </small> 
+      </div>
+    </div> 
+    {% endfor %}
+      
+  </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

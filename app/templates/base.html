@@ -1,64 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-  	<title>MaxCash</title>
 
+  <head>
     {% block head %}
+
+    {% if title %}
+    <title>{{ title }} | MaxCash</title>
+    {% else %}
+    <title>MaxCash</title>
+    {% endif %}
+
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> 
+    
     <!-- Custom Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
     <!-- Custom CSS -->
     <link rel="stylesheet" type="text/css" href="static/css/main.css">
 
     {% endblock %}
   </head>
-  <body>
 
-    {% block message %}
-    <div>
-      {% with messages = get_flashed_messages() %}
-      {% if messages %}
-      <ul>
-        {% for message in messages %}
-        <li style="color: green">{{ message }}</li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-      {% endwith %}
-    </div>
+  <body>
+    {% block navbar %}
+    <nav class="navbar navbar-toggleable-md navbar-light" style="background-color: #21618c;">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
+      data-target="#navbarToggler" aria-controls="navbarToggler" aria-expanded="false" 
+      aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#" style="color: #e5e7e9; font-weight: bold;">MaxCash</a>
+      <div class="collapse navbar-collapse" id="navbarToggler">
+        <div class="navbar-brand hidden-md-down"></div>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 hidden-lg-up">
+          <li class="nav-item active">
+            <a class="nav-link" href="#" style="color: #fff;">Overview</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#" style="color: #fff;">Settings</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ url_for('auth.sign_out') }}" style="color: #fff;">Sign out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     {% endblock %}
 
-    {% block content %}{% endblock %}
+    <div class="container-fluid">
+      {% block content %}
+      <div class="row">
+        <div class="col-sm-3 hidden-md-down left-sidenav">
+          <div class="user">
+            <p><i class="fa fa-user"></i> {{ current_user.acc_name }}</p>
+          </div>
+          <div>
+            <ul class="nav-ul">
+              <li><a href="#">Overview</a></li>
+              <li><a href="#">Settings</a></li>
+              <li><a href="{{ url_for('auth.sign_out') }}">Sign out</a></li>
+            </ul>
+          </div>
+        </div> <!--#left-sidenav#-->
+        <div class="col-sm-7 article" style="background-color: #fff;">{% block article %}{% endblock %}</div><!--#article#-->
+        <div class="col-sm-2 hidden-md-down rigth-sidenav" style="background-color: #17202a;"></div><!--#rigth-sidenav#-->
+      </div>
+      {% endblock %}
+    </div>
 
     <footer>
       {% block footer %}
       <div class="container text-center">
-        <p>&copy; MaxCash 2018. All Rights Reserved.</p>
-        <ul class="list-inline">
-          <li class="list-inline-item">
-            <a href="#">Terms</a>
-          </li>|
-          <li class="list-inline-item">
-            <a href="#">Privacy</a>
-          </li>|
-          <li class="list-inline-item">
-            <a href="{{ url_for('index') }}">About</a>
-          </li>
-        </ul>
+        <small>
+          <p>&copy; Copyright 2018 by MAXCASH.</p>
+          <ul class="list-inline">
+            <li class="list-inline-item">
+              <a href="#">Terms</a>
+            </li>|
+            <li class="list-inline-item">
+              <a href="#">Privacy</a>
+            </li>
+          </ul>
+        </small>
       </div>
       {% endblock %}
     </footer>
-
+    
+    {% block javascript %}
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
-  </body>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> 
+    {% endblock %}
+  </body> 
 </html>

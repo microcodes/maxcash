@@ -1,18 +1,25 @@
 {% extends "base.html" %}
 
 {% block head %}
- {{ super() }}
-  <style>
-  	* { box-sizing: border-box; }
-  </style>
-{% endblock %}
-
-{% block message %}
   {{ super() }}
 {% endblock %}
 
+{% block navbar %}{% endblock %}
+
 {% block content %}
+
   <div class="container reg-form">
+    <div class="container">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <ul style="list-style: none; padding: 0;">
+        {% for category, message in messages %}
+        <li class="alert alert-{{ category }}" role="alert">{{ message}}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      {% endwith %}
+    </div>
     <div class="card">
       <div class="card-body">
       	<form action="" method="post">
@@ -39,15 +46,15 @@
             {% endfor %}
           </div>
 
-          <div class="form-group sign-term"><small>By signing in, you agree to our <a href="#">Terms of Use</a> and our <a href="#">Privacy Policy</a>.</small></div>
+          <br />
 
       	  <div class="form-group">
             {{ form.sign_in(class="btn btn-success btn-block") }}
           </div>
           <div class="form-group divider">
-		  <hr class="left"><small>New to site?</small><hr class="right">
-		  </div>
-		  <p><a class="btn btn-info btn-block" href="{{ url_for('sign_up') }}">Sign up</a></p>
+		        <small>New to site?</small>
+		      </div>
+		      <p><a class="btn btn-info btn-block" href="{{ url_for('auth.sign_up') }}">Sign up</a></p>
       	</form>
       </div>  
     </div>   
@@ -57,3 +64,5 @@
 {% block footer %}
   {{ super() }}
 {% endblock %}
+
+{% block javascript %}{% endblock %}

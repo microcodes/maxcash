@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField, SelectField, PasswordField, BooleanField, SubmitField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
-from app.models import User
+from ..models import User
 
 
 class SignUpForm(FlaskForm):
@@ -65,17 +65,4 @@ class SignInForm(FlaskForm):
 	def validate_password(self, password):
 		user = User.query.filter_by(password=password.data).first()
 		if user is None:
-			raise ValidationError('Invalid password')		
-
-
-"""
-class EmailForm(FlaskForm):
-	email = StringField('Email', validators=[DataRequired(), Email()])
-
-
-class AccountForm(FlaskForm):
-	bank_name = SelectField('Bank Name', validators=[DataRequired()])
-	acc_no = StringField('Account Number', validators=[DataRequired(), Length(min=0, max=10)])
-	acc_name = StringField('Account Name', validators=[DataRequired()])
-	save = SubmitField('Save')
-"""	
+			raise ValidationError('Invalid password')

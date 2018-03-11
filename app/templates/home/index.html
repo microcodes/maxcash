@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>MaxCash</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous"> 
+  
+  <!-- Custom Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"> 
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" type="text/css" href="static/css/main.css">
+
+  <style>
+		h1, h3 { font-weight: 700; }
+    .color { color: green; }
+    .color:hover { color: green; }
+  </style>
+</head>
+<body>
+
+    <div class="masthead d-flex">
+      <div class="container text-center my-auto">
+        <h1 class="mb-1">MaxCash</h1>
+        <h3 class="mb-5">
+          <em>Naira trading platform</em>
+        </h3>
+        <p><a class="btn btn-outline-info btn-xl" href="{{ url_for('auth.sign_up') }}">Sign Up</a></p>
+        <p>OR</p>
+        <p><a href="#" class="color">Sign In</a></p>  
+      </div>
+      <div class="overlay"></div>
+	</div>
+	
+</body>
+</html>

@@ -1,9 +1,18 @@
 /* Universal rules */
+* { box-sizing: border-box; }
 
-body {font-family: 'Source Sans Pro';}
+body,
+html {
+    width: 100%;
+    height: 100%;
+}
+
+body {
+	font-family: 'Source Sans Pro';
+	background-color: #fff;
+}
 
 /* Landing page rules */
-
 .masthead {
     min-height: 30rem;
     position: relative;
@@ -34,7 +43,6 @@ body {font-family: 'Source Sans Pro';}
 }
 
 /* Sign-up and Sign-in page rules */
-
 form { margin: 0px 10px; }
 
 h2 {
@@ -75,3 +83,125 @@ h2 {
 .left { float: left; }
 
 .right { float: right; }
+
+/* Dashboard rules */
+.navbar-rules {
+	background-color: #85929e;
+}
+
+.navbar-brand { height: 40px; }
+
+.row.content { height: auto; }
+
+.sidenav {
+	background-color: #34495e;
+	color: white;
+  	height: 589px;
+}
+
+.userinfo {
+	padding: 30px 3px 7px 5px;
+	font-weight: bold;
+}
+
+/* left-sidenav */
+.left-sidenav {
+	background-color: #17202a; 
+	height: 589px;
+	padding: 0;
+}
+
+.user {
+	color: #fff; 
+	font-weight: bold; 
+	width: 100%; 
+	background-color: #273746; 
+	padding: 17px;
+	padding-left: 10px; 
+	padding-bottom: 10px;
+}
+
+.user p i {
+	font-size: 25px; 
+	padding-right: 10px;
+}
+
+.nav-ul {
+	list-style: none; 
+	padding-left: 0; 
+	padding-top: 15px;
+}
+
+.nav-ul li {
+	padding: 5px;
+	font-weight: bold;
+}
+
+.nav-ul li a { 
+	color: #eaeded;
+	padding-left: 19px;
+}
+
+.nav-ul li:hover {
+	background-color: #273746;
+	border-left: 3px solid #f00;
+}
+/* left-sidenav end */
+
+/* article */
+.card {
+	margin-top: 10px;
+	border-radius: 0;
+}
+
+.fa-chart-line, 
+.fa-history , 
+.fa-ethereum {
+	font-size: 2.3rem;
+}
+
+.fa-chart-line {
+	color: green;
+}
+
+.fa-history {
+	color: orange;
+	padding-top: 5px;
+}
+
+.fa-ethereum {
+	color: blue;
+	padding-top: 5px;
+}
+
+.card p {
+	font-size: 1.1rem;
+	color: #34495e;
+	font-weight: bold;
+	margin-bottom: 0;
+}
+
+.value {
+	padding-top: 5px;
+}
+
+.btn-block { 
+	margin-top: 10px;
+	margin-bottom: 7px;
+}
+/* article end */
+
+
+
+
+.content-ii { 
+	padding-top: 35px;
+}
+
+.content-iii {
+	padding-top: 20px;
+}
+
+@media screen and (max-width: 767px) {
+  	.row.content { height: auto; } 
+}

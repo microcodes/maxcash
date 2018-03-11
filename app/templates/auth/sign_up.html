@@ -2,12 +2,9 @@
 
 {% block head %}
   {{ super() }}
-  <style>
-    * { box-sizing: border-box; }
-  </style>
 {% endblock %}
 
-{% block message %}{% endblock %}
+{% block navbar %}{% endblock %}
 
 {% block content %}
   <div class="container reg-form">
@@ -86,7 +83,7 @@
           </div>
 
           <hr>
-          <p>Already have an account? <a href="{{ url_for('sign_in') }}">Sign in</a></p>
+          <p>Already have an account? <a href="{{ url_for('auth.sign_in') }}">Sign in</a></p>
       	</form>
       </div>  
     </div>   
@@ -96,3 +93,5 @@
 {% block footer %}
   {{ super() }}
 {% endblock %}
+
+{% block javascript %}{% endblock %}
