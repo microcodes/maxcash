@@ -3,7 +3,7 @@ from flask_login import login_required
 from . import dash
 from .. import db
 from ..models import User
-from ..task import buy
+from ..tasks import buy
 
 """
 #@celery.task()

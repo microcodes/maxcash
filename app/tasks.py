@@ -1,5 +1,5 @@
 from . import celery, db
-from .model import User
+from .models import User
 
 
 @celery.task
