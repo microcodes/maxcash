@@ -14,7 +14,7 @@
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css"> 
 
   <!-- Custom CSS -->
-  <link rel="stylesheet" type="text/css" href="static/css/main.css">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}">
 
   <style>
 		h1, h3 { font-weight: 700; }
@@ -31,8 +31,8 @@
           <em>Naira trading platform</em>
         </h3>
         <p><a class="btn btn-outline-info btn-xl" href="{{ url_for('auth.sign_up') }}">Sign Up</a></p>
-        <p>OR</p>
-        <p><a href="#" class="color">Sign In</a></p>  
+        <p><small>OR</small></p>
+        <p><a href="{{ url_for('auth.sign_in') }}" class="color">Sign In</a></p>  
       </div>
       <div class="overlay"></div>
 	</div>

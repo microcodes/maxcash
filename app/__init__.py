@@ -4,14 +4,18 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from celery import Celery
 
-from config import app_config, DevelopmentConfig
+from config import app_config
+import celeryconfig
 
 db = SQLAlchemy()
 login_manager = LoginManager()
 
-celery = Celery(__name__, backend= DevelopmentConfig.CELERY_RESULT_BACKEND, 
-		            broker=DevelopmentConfig.CELERY_BROKER_URL)
+celery = Celery(__name__, 
+	        broker='amqp://',
+            backend='redis://',
+            include=['app.tasks'])
 
+celery.config_from_object(celeryconfig)
 
 def create_app(config_name):
 	app = Flask(__name__)
@@ -20,7 +24,6 @@ def create_app(config_name):
 	login_manager.init_app(app)
 	login_manager.login_view = 'auth.sign_in'
 	migrate = Migrate(app, db)
-	celery.conf.update(app.config)
 
 	from app import models
 

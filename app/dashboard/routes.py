@@ -1,11 +1,12 @@
 from flask import render_template, redirect, url_for, flash
 from flask_login import login_required
 from . import dash
-from .. import db, celery
+from .. import db
 from ..models import User
+from ..task import buy
 
-
-@celery.task()
+"""
+#@celery.task()
 def crtr_sell():
 	crtr = User.query.filter_by(who='crtr').first()
 	if crtr.stock == 2000:
@@ -26,7 +27,7 @@ def crtr_sell():
 		db.session.commit()
 		
 
-@celery.task()
+#@celery.task()
 def profit():
 	stockholders = User.query.filter_by(status='stockholder').all()
 	for u in stockholder:
@@ -37,9 +38,9 @@ def profit():
 	db.session.commit()	
 
 		
-crtr_sell.delay()
-profit.delay()			
-
+#crtr_sell.delay()
+#profit.delay()			
+"""
 
 @dash.route('/dashboard')
 @login_required
@@ -50,14 +51,15 @@ def dashboard():
 @dash.route('/buy/<int:id>')
 @login_required
 def buy(id):
-	user = User.query.get(id)
-	if user.stock == 0 and user.status == 'ready':
-		user.status = 'queued'
-		db.session.commit()
-		flash('You have successfull place a buy order.', 'success')
-		return redirect(url_for('dash.dashboard'))
-	flash('Sorry! You can not place a buy order at your current status.', 'danger')
-	return redirect(url_for('dash.dashboard'))	
+	#user = User.query.get(id)
+	#if user.stock == 0 and user.status == 'ready':
+	#	user.status = 'queued'
+	#	db.session.commit()
+	buy.delay(id)
+	flash('You have successfull place a buy order.', 'success')
+	return redirect(url_for('dash.dashboard'))
+	#flash('Sorry! You can not place a buy order at your current status.', 'danger')
+	#return redirect(url_for('dash.dashboard'))	
 
 
 @dash.route('/sell/<int:id>')

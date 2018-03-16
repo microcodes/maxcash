@@ -11,8 +11,8 @@ class DevelopmentConfig(Config):
 	SQLALCHEMY_DATABASE_URI = 'sqlite:///' + os.path.join(basedir, 'maxcash.db')
 	SQLALCHEMY_TRACK_MODIFICATIONS = False
 	SQLALCHEMY_ECHO = True
-	CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
-	CELERY_BROKER_URL = 'redis://localhost:6379/0'
+	#CELERY_RESULT_BACKEND = 'redis://localhost:6379/0'
+	#CELERY_BROKER_URL = 'pyamqp://'
 
 
 class ProductionConfig(Config):
