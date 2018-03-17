@@ -12,14 +12,15 @@ login_manager = LoginManager()
 
 celery = Celery(__name__, 
 	        broker='amqp://',
-            backend='redis://',
+            backend='redis://localhost:6379/0',
             include=['app.tasks'])
 
 celery.config_from_object(celeryconfig)
 
 def create_app(config_name):
-	app = Flask(__name__)
+	app = Flask(__name__, instance_relative_config=True)
 	app.config.from_object(app_config[config_name])
+	app.config.from_pyfile('config.cfg', silent=True)
 	db.init_app(app)
 	login_manager.init_app(app)
 	login_manager.login_view = 'auth.sign_in'
