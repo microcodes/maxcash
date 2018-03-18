@@ -57,12 +57,12 @@ class SignInForm(FlaskForm):
 	password = PasswordField('Password', validators=[DataRequired()])
 	sign_in = SubmitField('Sign in')
 
-	def validate_phone(self, phone):
-		user = User.query.filter_by(phone=phone.data).first()
-		if user is None:
-			raise ValidationError('Invalid phone number')
+	#def validate_phone(self, phone):
+	#	user = User.query.filter_by(phone=phone.data).first()
+	#	if user is None:
+	#		raise ValidationError('Invalid phone number')
 
-	def validate_password(self, password):
-		user = User.query.filter_by(password=password.data).first()
-		if user is None:
-			raise ValidationError('Invalid password')
+	#def validate_password(self, password):
+	#	user = User.query.filter_by(password=password.data).first()
+	#	if user is None:
+	#		raise ValidationError('Invalid password')
