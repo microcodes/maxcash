@@ -35,8 +35,10 @@ def sign_in():
 
 	form = SignInForm()
 	if form.validate_on_submit():
-		user = User.query.filter(User.phone==form.phone.data).\
-						  filter(User.password==form.password.data).first()
+		user = User.query.filter(User.phone==form.phone.data).first()
+		if user is None or not user.check_password(form.password.data):
+			flash('Invalid username or password', 'danger')
+			return redirect(url_for('auth.sign_in'))
 
 		login_user(user)
 

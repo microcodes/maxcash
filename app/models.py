@@ -1,3 +1,4 @@
+from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from . import db, login_manager
 from .util import todays_date
@@ -23,8 +24,13 @@ class User(UserMixin ,db.Model):
 	order_date = db.Column(db.String)
 	notice     = db.Column(db.String)
 	round      = db.Column(db.Integer, default=0)
-	buyers     = db.relationship('User')	
+	buyers     = db.relationship('User')
 
+	def set_password(self, password):
+		self.password = generate_password_hash(password)
+
+	def check_password(self, password):
+		return check_password_hash(self.password, password)
 
 
 @login_manager.user_loader

@@ -57,6 +57,8 @@ h2 {
 
 .form-group { margin-bottom: 10px; }
 
+.sign-in-button { margin-top: 20px; }
+
 .card { 
 	padding: 0 15px;
 	border: 1px solid #AAA; 
@@ -123,7 +125,7 @@ h2 {
 
 .user p i {
 	font-size: 25px; 
-	padding-right: 10px;
+	margin-right: 5px;
 }
 
 .nav-ul {

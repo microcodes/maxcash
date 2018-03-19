@@ -11,7 +11,7 @@
     <div class="col-sm-4">
       <div class="card status">
         <p><i class="fas fa-history"></i> Status</p>
-        <p class="value">{{ current_user.status }}</p>
+        <p class="value">{{ current_user.status | upper }}</p>
       </div>
     </div>
     <div class="col-sm-4">
@@ -45,12 +45,13 @@
     <div class="col-sm-12">
       <a href="{{ url_for('dash.cancel', id=current_user.id) }}" class="btn btn-outline-warning btn-lg btn-block">Cancel buy order</a>
     </div>
-    {% elif current_user.buyers | length >= 4 %}
+    {% elif current_user.buyers | length == 2 %}
 	  <div class="col-sm-12">
 	    <a href="{{ url_for('dash.sell', id=current_user.id) }}" class="btn btn-outline-success btn-lg btn-block">Sell Stock</a>
     </div>
     {% endif %}
 	</div>
+
 	<div class="row">
     {% if current_user.status == 'buyer' %}
     <div class="col-sm-12">
@@ -62,8 +63,8 @@
     </div>
     {% endif %} 
   </div>
+
   <div class="row">
-    
     {% for x in current_user.buyers %}
     <div class="col-sm-6">
       <div>
@@ -73,8 +74,7 @@
         </small> 
       </div>
     </div> 
-    {% endfor %}
-      
+    {% endfor %}  
   </div>
 {% endblock %}
 
