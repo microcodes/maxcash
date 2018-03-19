@@ -5,10 +5,10 @@ from ..models import User
 
 
 class SignUpForm(FlaskForm):
-	email = StringField('Email', validators=[DataRequired(), Email()])
+	email = StringField('Email', validators=[DataRequired(), Email(), Length(max=40)])
 	phone = StringField('Phone Number', validators=[DataRequired(), Length(min=11, max=11, 
 		 											message='This field must be 11 digits long.')])
-	password = PasswordField('Password', validators=[DataRequired()])
+	password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
 	password2 = PasswordField('Password (repeat)', validators=[DataRequired(), EqualTo('password')])
 	bank_name = SelectField('Bank Name', 
 		choices=[('--- select ---', '--- select ---'), 
@@ -23,8 +23,8 @@ class SignUpForm(FlaskForm):
 		         ('Unity Bank', 'Unity Bank'), ('Wema Bank', 'Wema Bank'), ('Zenith Bank', 'Zenith Bank')
 		        ])
 	acc_no = StringField('Account Number', validators=[DataRequired(), Length(min=10, max=10, 
-		                                               message='This field must be 11 digits long.')])
-	acc_name = StringField('Account Name', validators=[DataRequired()])
+		                                               message='This field must be 10 digits long.')])
+	acc_name = StringField('Account Name', validators=[DataRequired(), Length(max=40)])
 	sign_up = SubmitField('Sign up')
 
 	def validate_email(self, email):
@@ -46,10 +46,10 @@ class SignUpForm(FlaskForm):
 		if user is not None:
 			raise ValidationError('This account number is already in use.')
 
-	def validate_acc_name(self, acc_name):
-		user = User.query.filter_by(acc_name=acc_name.data).first()
-		if user is not None:
-			raise ValidationError('This account name is already in use.')		
+	#def validate_acc_name(self, acc_name):
+	#	user = User.query.filter_by(acc_name=acc_name.data).first()
+	#	if user is not None:
+	#		raise ValidationError('This account name is already in use.')		
 
 
 class SignInForm(FlaskForm):

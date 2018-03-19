@@ -149,7 +149,9 @@ h2 {
 /* left-sidenav end */
 
 /* article */
-.card {
+.stock, 
+.status, 
+.stock-price {
 	margin-top: 10px;
 	border-radius: 0;
 }
@@ -174,7 +176,9 @@ h2 {
 	padding-top: 5px;
 }
 
-.card p {
+.stock p, 
+.status p, 
+.stock-price p {
 	font-size: 1.1rem;
 	color: #34495e;
 	font-weight: bold;

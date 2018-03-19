@@ -9,12 +9,12 @@ class DevelopmentConfig(Config):
 
 
 class ProductionConfig(Config):
-	pass
+	SQLALCHEMY_ECHO = True
 
 
 class TestingConfig(Config):
-	SQLALCHEMY_DATABASE_URI = 'sqlite://:memory:'
-	SQLALCHEMY_ECHO = True
+	SQLALCHEMY_DATABASE_URI = 'sqlite://'
+	#SQLALCHEMY_ECHO = True
 	TESTING = True
 
 

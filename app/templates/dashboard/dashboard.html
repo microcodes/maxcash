@@ -3,19 +3,19 @@
 {% block article %}
 	<div class="row">
 	  <div class="col-sm-4">
-	    <div class="card">
+	    <div class="card stock">
         <p><i class="fas fa-chart-line"></i> Stock</p>
         <p class="value">₦{{ current_user.stock }}.00</p>
       </div>
 	  </div>
     <div class="col-sm-4">
-      <div class="card">
+      <div class="card status">
         <p><i class="fas fa-history"></i> Status</p>
         <p class="value">{{ current_user.status }}</p>
       </div>
     </div>
     <div class="col-sm-4">
-      <div class="card">
+      <div class="card stock-price">
         <p><i class="fab fa-ethereum"></i></i> Stock price</p>
         <p class="value">₦1000.00</p>
       </div>

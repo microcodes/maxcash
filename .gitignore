@@ -1,5 +1,7 @@
 *.pyc
+db_create.py
 env/
 venv/
 instance/
 maxcash.db
+maxcash.sock
