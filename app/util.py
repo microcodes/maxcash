@@ -35,7 +35,7 @@ def insert_users(db, User):
 		        acc_name='Abdulwahab Abdullateef',
 		        role='crtr',
 		        stock=2000,
-		        status='seller')
+		        status='selling')
 
 	user_2 = User(email='maim@gmail.com',
 				phone='07035948710',
@@ -44,7 +44,7 @@ def insert_users(db, User):
 		        acc_no='0306040191', 
 		        acc_name='Maimuna Abdullateef',
 		        role='intx',
-		        status='seller')
+		        status='selling')
 
 	user_3 = User(email='husna@gmail.com',
 				phone='08198447511',

@@ -8,7 +8,7 @@ class SignUpForm(FlaskForm):
 	email = StringField('Email', validators=[DataRequired(), Email(), Length(max=40)])
 	phone = StringField('Phone Number', validators=[DataRequired(), Length(min=11, max=11, 
 		 											message='This field must be 11 digits long.')])
-	password = PasswordField('Password', validators=[DataRequired(), Length(min=6)])
+	password = PasswordField('Password', validators=[DataRequired(), Length(min=4)])
 	password2 = PasswordField('Password (repeat)', validators=[DataRequired(), EqualTo('password')])
 	bank_name = SelectField('Bank Name', 
 		choices=[('--- select ---', '--- select ---'), 
@@ -44,25 +44,10 @@ class SignUpForm(FlaskForm):
 	def validate_acc_no(self, acc_no):
 		user = User.query.filter_by(acc_no=acc_no.data).first()
 		if user is not None:
-			raise ValidationError('This account number is already in use.')
-
-	#def validate_acc_name(self, acc_name):
-	#	user = User.query.filter_by(acc_name=acc_name.data).first()
-	#	if user is not None:
-	#		raise ValidationError('This account name is already in use.')		
+			raise ValidationError('This account number is already in use.')		
 
 
 class SignInForm(FlaskForm):
 	phone = StringField('Phone Number', validators=[DataRequired()])
 	password = PasswordField('Password', validators=[DataRequired()])
 	sign_in = SubmitField('Sign in')
-
-	#def validate_phone(self, phone):
-	#	user = User.query.filter_by(phone=phone.data).first()
-	#	if user is None:
-	#		raise ValidationError('Invalid phone number')
-
-	#def validate_password(self, password):
-	#	user = User.query.filter_by(password=password.data).first()
-	#	if user is None:
-	#		raise ValidationError('Invalid password')
