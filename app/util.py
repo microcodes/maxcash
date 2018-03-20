@@ -27,15 +27,15 @@ def insert_users(db, User):
 	db.drop_all()
 	db.create_all()
 
-	#user_1 = User(email='mjhdaais@gmail.com',
-	#			phone='07065385493', 
-	#	        password=generate_password_hash('mjhd'),
-	#	        bank_name='First Bank', 
-	#	        acc_no='3036040428', 
-	#	        acc_name='Abdulwahab Abdullateef',
-	#	        role='crtr',
-	#	        stock=2000,
-	#	        status='seller')
+	user_1 = User(email='mjhdaais@gmail.com',
+				phone='07065385493', 
+		        password=generate_password_hash('mjhd'),
+		        bank_name='First Bank', 
+		        acc_no='3036040428', 
+		        acc_name='Abdulwahab Abdullateef',
+		        role='crtr',
+		        stock=2000,
+		        status='seller')
 
 	user_2 = User(email='maim@gmail.com',
 				phone='07035948710',
@@ -74,5 +74,5 @@ def insert_users(db, User):
 		        acc_no='1110756341', 
 		        acc_name='Fatima Abdullateef')
 
-	db.session.add_all([user_2, user_3, user_4, user_5, user_6])
+	db.session.add_all([user_2, user_2, user_3, user_4, user_5, user_6])
 	db.session.commit()
