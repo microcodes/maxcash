@@ -3,7 +3,7 @@ from flask_login import current_user, login_user, login_required, logout_user
 from werkzeug.urls import url_parse
 from . import auth
 from .forms import SignUpForm, SignInForm
-from .. import db
+from .. import db, mail
 from ..models import User
 
 

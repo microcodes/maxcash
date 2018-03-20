@@ -19,7 +19,7 @@ class User(UserMixin ,db.Model):
 	role       = db.Column(db.Enum('crtr', 'intx', 'intxx', name='who_enum'), 
 		                   nullable=False, default='intxx')
 	stock      = db.Column(db.Integer, default=0)
-	status     = db.Column(db.Enum('ready', 'queued', 'buyer', 'stockholder', 'seller', 'frozen', 
+	status     = db.Column(db.Enum('ready', 'queued', 'buyer', 'stockholder', 'seller', 'selling', 'frozen', 
 		                   name='status_enum'), nullable=False, default='ready')
 	order_date = db.Column(db.String)
 	notice     = db.Column(db.String)

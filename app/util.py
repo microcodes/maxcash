@@ -1,6 +1,9 @@
 from datetime import datetime
 from werkzeug.security import generate_password_hash
-#from .models import User
+<<<<<<< HEAD
+
+=======
+>>>>>>> add_sending_email
 
 
 now = datetime.utcnow()
@@ -75,5 +78,9 @@ def insert_users(db, User):
 		        acc_no='1110756341', 
 		        acc_name='Fatima Abdullateef')
 
+<<<<<<< HEAD
 	db.session.add_all([user_1, user_2, user_3, user_4, user_5, user_6])
+=======
+
+>>>>>>> add_sending_email
 	db.session.commit()
