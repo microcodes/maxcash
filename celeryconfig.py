@@ -1,4 +1,5 @@
-from datetime import timedelta
+#from datetime import timedelta
+from celery.schedules import crontab
 
 
 accept_content    = ['json']
@@ -7,9 +8,12 @@ result_serializer = 'json'
 timezone          = 'Africa/Lagos'
 
 beat_schedule = {
-    'every-10-seconds': {
-        'task': 'tasks.print',
-        # Every 10 seconds
-        'schedule': timedelta(seconds=10)
+    'every-1-hour': {
+        'task': 'app.tasks.profit',
+        'schedule': 5.0
+    },
+    'every-1-hour': {
+    	'task': 'app.tasks.re_sell',
+    	'schedule': 5.0
     }
 }

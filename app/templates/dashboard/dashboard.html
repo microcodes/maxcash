@@ -22,9 +22,11 @@
     </div>
 	</div>
 
+  <div id="id" style="display: none;">{{ current_user.id }}</div>
+
 	<hr style="border: 1px dashed #808b96;">
 
-  <div class="container">
+  <div>
     {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
     <ul style="list-style: none; padding: 0;">
@@ -37,15 +39,15 @@
   </div>
 
 	<div class="row">
-    {% if current_user.status == 'ready' %}
+    {% if current_user.status == 'ready' and current_user.stock == 0 %}
 	  <div class="col-sm-12">
 	    <a href="{{ url_for('dash.buy', id=current_user.id) }}" class="btn btn-outline-info btn-lg btn-block">Buy ₦1000 Stock</a>
 	  </div>
-    {% elif current_user.status == 'queued' %}
+    {% elif current_user.status == 'queued' and current_user.stock == 0 %}
     <div class="col-sm-12">
       <a href="{{ url_for('dash.cancel', id=current_user.id) }}" class="btn btn-outline-warning btn-lg btn-block">Cancel buy order</a>
     </div>
-    {% elif current_user.buyers | length == 2 %}
+    {% elif current_user.status == 'seller' and  current_user.stock == 2000 %}
 	  <div class="col-sm-12">
 	    <a href="{{ url_for('dash.sell', id=current_user.id) }}" class="btn btn-outline-success btn-lg btn-block">Sell Stock</a>
     </div>
@@ -57,7 +59,12 @@
     <div class="col-sm-12">
       <div style="background-color: skyblue; margin-top: 23px;">
         <small>
-          {{ current_user.notice }}
+          <p>Hello! We got you a seller and you are required to make payment of N1000 within <span id="demo">12h 0m 0s</span> into the following bank account information in order to buy the stock from him/her:</p>
+          <p><strong>Account Name:   </strong>{{ current_user.seller.acc_name }}</p> 
+          <p><strong>Account Number: </strong>{{ current_user.seller.acc_no }}</p> 
+          <p><strong>Bank Name:      </strong>{{ current_user.seller.bank_name }}</p> 
+          <p><strong>Phone Number:   </strong>{{ current_user.seller.phone }}</p>
+          <p><strong>Warning:   </strong>Before making the payment contact him/her to let them know that you are about to make the payment so that they will confirm the payment and release the stock for you on time.</p>
         </small> 
       </div>
     </div>

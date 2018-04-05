@@ -22,7 +22,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
 
     <!-- Custom CSS -->
-    <link rel="stylesheet" type="text/css" href="static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="static/css/main.css"> 
 
     {% endblock %}
   </head>
@@ -96,7 +96,69 @@
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="static/js/js/jquery.plugin.js"></script>
+    <script src="static/js/js/jquery.countdown.js"></script>
+
+    <script>
+      //var oldDateObj = new Date();
+      //var newDateObj = new Date(oldDateObj.getTime() + 2*60000);
+
+      //$("#demo").countdown({until: newDateObj, format: 'HMS'});
+
+
+
+
+      /*var myVar = setInterval(myTimer, 1000);
+      var id = document.getElementById("id");
+      var txt = "limit-";
+      var limit = txt.concat(id.innerHTML);
+
+      function myTimer() {
+          //var acc_name = document.getElementById("acc_name");
+          if(localStorage.limit){
+            document.getElementById("demo").innerHTML = localStorage.limit + ' ' + limit;
+            localStorage.limit -= 1;
+            if(localStorage.limit < 1){
+              clearInterval(myVar);
+              localStorage.removeItem("limit");
+              document.getElementById("demo").innerHTML = "Time up!";
+            }
+          }else{
+            localStorage.limit = 20;
+            document.getElementById("demo").innerHTML = localStorage.limit;
+            localStorage.limit -= 1;
+          }          
+      }*/
+
+      var myVar = setInterval(myTimer, 1000);
+      var id = document.getElementById("id");
+      var txt = "limit";
+      var limit = txt.concat(id.innerHTML);
+
+      function myTimer() {
+          var ls = localStorage.getItem(limit);
+          if(ls){
+            document.getElementById("demo").innerHTML = ls;
+            //var ls = localStorage.getItem(limit);
+            //ls -= 1;
+            localStorage.setItem(limit, ls-=1)
+            if(ls < 1){
+              clearInterval(myVar);
+              localStorage.removeItem(limit);
+              document.getElementById("demo").innerHTML = "Time up!";
+              
+            }
+          }else{
+            localStorage.setItem(limit, 10);
+            document.getElementById("demo").innerHTML = localStorage.getItem(limit);
+            //var ls = localStorage.getItem(limit);
+            //ls -= 1;
+            //localStorage.setItem(limit, ls)
+          }          
+      }
+    </script>
     {% endblock %}
   </body> 
 </html>

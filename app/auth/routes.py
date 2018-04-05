@@ -42,6 +42,13 @@ def sign_in():
 
 		login_user(user)
 
+		if user.role == 'crtr':
+			return redirect(url_for('dash.crtr_dashboard'))
+
+		elif user.role == 'intx':
+			return redirect(url_for('dash.intx_dashboard'))
+
+
 		next_page = request.args.get('next')
 		if not next_page or url_parse(next_page).netloc != '':
 			next_page = url_for('auth.sign_in')

@@ -1,11 +1,10 @@
-#import os
-from app import db, create_app, celery
+#from app import db, create_app, celery
+from app import app, db
 from app.models import User
-from app.util import insert_users
+from instance.insert_users import insert_users
 
-#config_name = os.getenv('FLASK_CONFIG')
-app = create_app('production')
-app.app_context().push()
+#app = create_app()
+#app.app_context().push()
 
 #insert_users(db, User)
 
