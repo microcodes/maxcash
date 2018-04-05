@@ -19,12 +19,14 @@ class User(UserMixin ,db.Model):
 	role       = db.Column(db.Enum('crtr', 'intx', 'intxx', name='who_enum'), 
 		                   nullable=False, default='intxx')
 	stock      = db.Column(db.Integer, default=0)
-	status     = db.Column(db.Enum('ready', 'queued', 'buyer', 'stockholder', 'seller', 'selling', 'frozen', 
-		                   name='status_enum'), nullable=False, default='ready')
-	order_date = db.Column(db.String)
+	status     = db.Column(db.Enum('ready', 'queued', 'buyer', 'stockholder', 'seller', 
+		                           'frozen', 'broker', name='status_enum'), 
+	                                nullable=False, default='ready')
+	pair_date  = db.Column(db.String)
+	earn_date  = db.Column(db.String)
 	notice     = db.Column(db.String)
 	round      = db.Column(db.Integer, default=0)
-	buyers     = db.relationship('User')
+	buyers     = db.relationship('User', backref=db.backref('seller', remote_side=[id]))
 
 	def set_password(self, password):
 		self.password = generate_password_hash(password)

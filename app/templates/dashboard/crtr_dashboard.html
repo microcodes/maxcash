@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+
+{% block article %}
+	<div class="row">
+	  <div class="col-sm-4">
+	    <div class="card stock">
+        <p><i class="fas fa-chart-line"></i> Stock</p>
+        <p class="value">₦{{ current_user.stock }}.00</p>
+      </div>
+	  </div>
+    <div class="col-sm-4">
+      <div class="card status">
+        <p><i class="fas fa-history"></i> Status</p>
+        <p class="value">{{ current_user.status | upper }}</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card stock-price">
+        <p><i class="fab fa-ethereum"></i></i> Stock price</p>
+        <p class="value">₦1000.00</p>
+      </div>
+    </div>
+	</div>
+
+	<hr style="border: 1px dashed #808b96;">
+
+  <div class="row">
+    <div class="col-sm-4">
+      <div class="card stock">
+        <p><i class="fas fa-chart-line"></i> Stock</p>
+        <p class="value">₦{{ current_user.stock }}.00</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card status">
+        <p><i class="fas fa-history"></i> Status</p>
+        <p class="value">{{ current_user.status | upper }}</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card stock-price">
+        <p><i class="fab fa-ethereum"></i></i> Stock price</p>
+        <p class="value">₦1000.00</p>
+      </div>
+    </div>
+  </div>
+
+  <hr style="border: 1px dashed #808b96;">
+
+  <div>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <ul style="list-style: none; padding: 0;">
+      {% for category, message in messages %}
+      <li class="alert alert-{{ category }}" role="alert">{{ message}}</li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+  </div>
+
+  {% if current_user.stock == 2000 %}
+  <div class="col-sm-12">
+    <a href="{{ url_for('dash.crtr_sell', id=current_user.id) }}" class="btn btn-outline-warning btn-lg btn-block">Sell Stock</a>
+  </div>
+  {% endif %}
+
+  <div class="row">
+    {% for x in current_user.buyers %}
+    <div class="col-sm-6">
+      <div>
+        <small>
+          <p>{{ x.email }} wants to buy your stock</p>
+          <p><a href="{{ url_for('dash.confirm', id=x.id, sid=x.seller_id) }}">Confirm payment and release stock</a></p>
+        </small> 
+      </div>
+    </div> 
+    {% endfor %}  
+  </div>
+{% endblock %}
+
+{% block footer %}{% endblock %}

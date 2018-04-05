@@ -1,33 +1,45 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-from flask_migrate import Migrate
-from flask_login import LoginManager
-from flask_mail import Mail
 from celery import Celery
 
-from config import app_config
+from app.extensions import db, migrate, login_manager, mail
+from app.util import make_celery
+
+#from config import app_config
 import celeryconfig
 
-db = SQLAlchemy()
-login_manager = LoginManager()
-mail = Mail()
+app = Flask(__name__, instance_relative_config=True)
+app.config.from_pyfile('config.cfg')
 
-celery = Celery(__name__, 
-	        broker='amqp://',
-            backend='redis://localhost:6379/0',
-            include=['app.tasks'])
+celery = make_celery(app)
+celery.config_from_object(celeryconfig)     
 
-celery.config_from_object(celeryconfig)
+db.init_app(app)
+migrate.init_app(app)
+mail.init_app(app)
+login_manager.init_app(app)
+login_manager.login_view = 'auth.sign_in'
 
-def create_app(config_name=None):
+from app import models
+
+from .home import home as home_blueprint
+app.register_blueprint(home_blueprint)
+
+from .auth import auth as auth_blueprint
+app.register_blueprint(auth_blueprint)
+
+from .dashboard import dash as dash_blueprint
+app.register_blueprint(dash_blueprint)
+
+"""
+def create_app(config_name='production'):
 	app = Flask(__name__, instance_relative_config=True)
 	app.config.from_object(app_config[config_name])
 	app.config.from_pyfile('config.cfg')
 	db.init_app(app)
+	migrate.init_app(app, db)
 	mail.init_app(app)
 	login_manager.init_app(app)
 	login_manager.login_view = 'auth.sign_in'
-	migrate = Migrate(app, db)
 
 	from app import models
 
@@ -40,4 +52,5 @@ def create_app(config_name=None):
 	from .dashboard import dash as dash_blueprint
 	app.register_blueprint(dash_blueprint)
 
-	return app	
+	return app
+"""	
