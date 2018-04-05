@@ -3,6 +3,7 @@ from celery import Celery
 
 
 now = datetime.utcnow()
+date_format = "%m-%d-%Y %H:%M:%S"
 
 todays_date = str(now.month) + '-' + str(now.day) + '-' + str(now.year)
 todays_dt   = str(now.month) + '-' + str(now.day) + '-' + str(now.year) + \
